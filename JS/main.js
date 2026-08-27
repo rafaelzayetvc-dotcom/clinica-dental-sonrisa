@@ -53,7 +53,21 @@ const appointmentForm = document.querySelector("#appointment-form");
 
 if (appointmentForm) {
     const dateInput = document.querySelector("#date");
+    const timeInput = document.querySelector("#time");
+    const dateLabel = document.querySelector('label[for="date"]');
+    const timeLabel = document.querySelector('label[for="time"]');
     const formMessage = document.querySelector("#form-message");
+
+    const updatePickerLabels = () => {
+        if (dateInput.value) {
+            const [year, month, day] = dateInput.value.split("-");
+            dateLabel.textContent = `${day}/${month}/${year}`;
+        } else {
+            dateLabel.textContent = "Fecha preferida";
+        }
+
+        timeLabel.textContent = timeInput.value || "Horario preferido";
+    };
 
     // Evita que se pueda elegir una fecha anterior a hoy.
     const today = new Date();
@@ -61,6 +75,10 @@ if (appointmentForm) {
         .toISOString()
         .split("T")[0];
     dateInput.min = localToday;
+
+    dateInput.addEventListener("input", updatePickerLabels);
+    timeInput.addEventListener("input", updatePickerLabels);
+    updatePickerLabels();
 
     appointmentForm.addEventListener("submit", (event) => {
         event.preventDefault();
