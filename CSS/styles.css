@@ -458,7 +458,10 @@ body {
     }
 
     .service-card p {
-        display: none;
+        display: block;
+        margin-top: 8px;
+        font-size: 11px;
+        line-height: 1.4;
     }
 }
 
@@ -526,6 +529,26 @@ body {
 
 .form-field {
     display: grid;
+}
+
+.form-field-picker {
+    position: relative;
+}
+
+.form-control-label {
+    position: absolute;
+    top: 6px;
+    left: 14px;
+    z-index: 1;
+    color: #6a7d91;
+    font-size: 11px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.form-field-picker input {
+    padding-top: 21px;
+    padding-bottom: 5px;
 }
 
 .form-field-wide,
